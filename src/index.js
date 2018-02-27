@@ -1,8 +1,7 @@
-'use strict';
+import express from "express";
+import bodyParser from "body-parser";
+import request from "request";
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const request = require('request');
 const app = express();
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
 

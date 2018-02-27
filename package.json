@@ -1,15 +1,20 @@
 {
   "name": "fbChatBot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": ".src/index.js",
   "author": "Viet Anh Tran",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "babel-node ./src/index.js",
+    "build": "./node_modules/.bin/babel  ./src --source-maps-inline -d ./dist"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }

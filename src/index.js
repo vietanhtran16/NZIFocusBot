@@ -22,6 +22,12 @@ controller.on('facebook_optin', function(bot, message) {
 // user said hello
 controller.hears(['hello'], 'message_received', function(bot, message) {
 
-    bot.reply(message, 'Hey there.');
+    bot.reply(message, 'Harrow. How are you');
 
 });
+
+controller.hears(['What date is it?'], 'message_received', function(bot, message) {
+    bot.reply(message, `Today is ${new Date().toDateString()}`);
+});
+
+

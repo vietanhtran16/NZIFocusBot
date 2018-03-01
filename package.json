@@ -5,17 +5,19 @@
   "author": "Viet Anh Tran",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.js",
-    "postinstall": "./node_modules/.bin/babel  ./src --source-maps-inline -d ./dist"
+    "start": "node ./dist/bundle.js",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "botkit": "^0.6.11",
+    "botkit": "^0.5.4",
     "express": "^4.16.2",
     "request": "^2.83.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9"
   }
 }

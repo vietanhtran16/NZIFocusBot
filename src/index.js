@@ -20,7 +20,7 @@ controller.on('facebook_optin', function(bot, message) {
 });
 
 // user said hello
-controller.hears(['hello'], 'message_received', function(bot, message) {
+controller.hears(['hello', 'hi', 'good morning'], 'message_received', function(bot, message) {
 
     bot.reply(message, 'Harrow. How are you');
 

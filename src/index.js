@@ -21,8 +21,10 @@ controller.hears(['.*'], 'message_received', (bot, message) => {
         .then((data) => {
             return JSON.stringify(data);
         }).then((witResponse) => {
-        bot.replyWithTyping(message, `${witResponse._text} and ${witResponse.entities.intent.value} and ${witResponse.entities.location.value}`);
-    })
+        bot.replyWithTyping(message, `${witResponse}`);
+    }).catch((error) => {
+        bot.replyWithTyping(message, error.message);
+    });
 });
 
 controller.hears(['hello', 'hi', 'good morning'], 'message_received', function(bot, message) {

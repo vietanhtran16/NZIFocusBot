@@ -1,9 +1,12 @@
 import Botkit from "botkit";
+import Wit from "node-wit";
 
 const controller = Botkit.facebookbot({
     access_token: process.env.FB_PAGE_ACCESS_TOKEN,
     verify_token: process.env.VERIFY_TOKEN,
 });
+
+const wit = new Wit({accessToken: process.env.WIT_TOKEN});
 
 const bot = controller.spawn({});
 
@@ -13,13 +16,15 @@ controller.setupWebserver(process.env.PORT || 5000,function(err,webserver) {
     });
 });
 
-controller.on('facebook_optin', function(bot, message) {
-
-    bot.reply(message, 'Welcome to my app!');
-
+controller.hears(['.*'], 'message_received', (bot, message) => {
+    wit.message(message.text)
+        .then((data) => {
+            return JSON.stringify(data);
+        }).then((witResponse) => {
+        bot.replyWithTyping(message, `${witResponse._text} and ${witResponse.entities.intent.value} and ${witResponse.entities.location.value}`);
+    })
 });
 
-// user said hello
 controller.hears(['hello', 'hi', 'good morning'], 'message_received', function(bot, message) {
 
     bot.replyWithTyping(message, 'Harrow. How are you');
@@ -27,7 +32,7 @@ controller.hears(['hello', 'hi', 'good morning'], 'message_received', function(b
 });
 
 controller.hears(['What date is it?'], 'message_received', function(bot, message) {
-    bot.replyWithTyping(message, `Today is ${new Date().toDateString()}`);
+    bot.replyWithTyping(message, `Today is ${new Date().toLocaleDateString(jk)}`);
 });
 
 

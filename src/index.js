@@ -1,5 +1,5 @@
 import Botkit from "botkit";
-import Wit from "node-wit";
+import {Wit} from "node-wit";
 
 const controller = Botkit.facebookbot({
     access_token: process.env.FB_PAGE_ACCESS_TOKEN,

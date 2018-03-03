@@ -21,10 +21,12 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 controller.hears(['.*'], 'message_received', (bot, message) => {
     wit.message(message.text)
         .then((data) => {
-            // bot.replyWithTyping(message, `Asking about ${data.entities.intent[0].value} in ${data.entities.location[0].value}`);
-            const weatherInfo = weatherApi.getWeatherInfo(data.entities.location[0].value);
+            return weatherApi.getWeatherInfo(data.entities.location[0].value);
+        })
+        .then((weatherInfo) => {
             bot.replyWithTyping(message, weatherInfo);
-        }).catch((error) => {
+        })
+        .catch((error) => {
         bot.replyWithTyping(message, error.message);
     });
 });

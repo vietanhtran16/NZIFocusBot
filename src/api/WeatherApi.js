@@ -13,9 +13,9 @@ export default class WeatherApi {
                 return response.data;
             })
             .then((data) => {
-                const weatherCondition = data.weather[0].description;
+                const condition = data.weather[0].description;
                 const temperature = data.main.temp;
-                return `Current temperature in ${data.name} is ${temperature} and it is ${weatherCondition}`;
+                return `The weather in ${data.name} is ${temperature}°C and ${condition}`;
             }).catch((error) => {
                 return error.message;
             })

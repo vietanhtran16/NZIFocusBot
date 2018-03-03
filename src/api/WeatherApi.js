@@ -10,7 +10,7 @@ export default class WeatherApi {
         const getWeatherInfoUrl = `${weatherApiUrl}${location}&units=metric&APPID=${this.apiToken}`;
         return Axios.get(getWeatherInfoUrl)
             .then((response) => {
-                return response;
+                return JSON.parse(response);
             }).catch((error) => {
                 return error.message;
             })

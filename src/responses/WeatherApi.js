@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const weatherApiUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+const weatherApiUrl = "http://responses.openweathermap.org/data/2.5/weather?q=";
 export default class WeatherApi {
     constructor(apiToken) {
         this.apiToken = apiToken;

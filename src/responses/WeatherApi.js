@@ -8,6 +8,7 @@ export default class WeatherApi {
 
     getWeatherInfo(location) {
         const getWeatherInfoUrl = `${weatherApiUrl}${location}&units=metric&APPID=${this.apiToken}`;
+        return location;
         return Axios.get(getWeatherInfoUrl)
             .then(response => response.data)
             .then((data) => {

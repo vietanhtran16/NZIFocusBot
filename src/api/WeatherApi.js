@@ -9,15 +9,11 @@ export default class WeatherApi {
     getWeatherInfo(location) {
         const getWeatherInfoUrl = `${weatherApiUrl}${location}&units=metric&APPID=${this.apiToken}`;
         return Axios.get(getWeatherInfoUrl)
-            .then((response) => {
-                return response.data;
-            })
+            .then(response => response.data)
             .then((data) => {
                 const condition = data.weather[0].description;
                 const temperature = data.main.temp;
                 return `The weather in ${data.name} is ${temperature}°C and ${condition}`;
-            }).catch((error) => {
-                return error.message;
-            })
+            }).catch(error => error.message);
     }
 }

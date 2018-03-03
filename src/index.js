@@ -1,5 +1,6 @@
 import Botkit from "botkit";
 import {Wit} from "node-wit";
+import WeatherApi from "./api/WeatherApi";
 
 const controller = Botkit.facebookbot({
     access_token: process.env.FB_PAGE_ACCESS_TOKEN,
@@ -7,6 +8,7 @@ const controller = Botkit.facebookbot({
 });
 
 const wit = new Wit({accessToken: process.env.WIT_TOKEN});
+const weatherApi = new WeatherApi(process.env.OPEN_WEATHER_TOKEN);
 
 const bot = controller.spawn({});
 
@@ -19,7 +21,9 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 controller.hears(['.*'], 'message_received', (bot, message) => {
     wit.message(message.text)
         .then((data) => {
-            bot.replyWithTyping(message, `Asking about ${data.entities.intent[0].value} in ${data.entities.location[0].value}`);
+            // bot.replyWithTyping(message, `Asking about ${data.entities.intent[0].value} in ${data.entities.location[0].value}`);
+            const weatherInfo = weatherApi.getWeatherInfo(data.entities.location[0].value);
+            bot.replyWithTyping(message, weatherInfo);
         }).catch((error) => {
         bot.replyWithTyping(message, error.message);
     });

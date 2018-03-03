@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const weatherApiUrl = "http://responses.openweathermap.org/data/2.5/weather?q=";
+const weatherApiUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
 export default class WeatherApi {
     constructor(apiToken) {
         this.apiToken = apiToken;
@@ -8,7 +8,6 @@ export default class WeatherApi {
 
     getWeatherInfo(location) {
         const getWeatherInfoUrl = `${weatherApiUrl}${location}&units=metric&APPID=${this.apiToken}`;
-        return getWeatherInfoUrl;
         return Axios.get(getWeatherInfoUrl)
             .then(response => response.data)
             .then((data) => {

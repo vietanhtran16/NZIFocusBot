@@ -10,12 +10,7 @@ export default class WeatherApi {
         const getWeatherInfoUrl = `${weatherApiUrl}${location}&units=metric&APPID=${this.apiToken}`;
         return Axios.get(getWeatherInfoUrl)
             .then((response) => {
-                return JSON.parse(response);
-            })
-            .then((data) => {
-                const weatherCondition = data.weather[0].description;
-                const temperature = data.main.temp;
-                return `Current temperature in ${data.name} is ${temperature} and it is ${weatherCondition}`;
+                return response;
             }).catch((error) => {
                 return error.message;
             })

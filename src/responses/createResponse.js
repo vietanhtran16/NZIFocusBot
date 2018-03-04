@@ -1,4 +1,5 @@
 import WeatherApi from "./WeatherApi";
+import {Intent} from "../enums/Intent";
 
 const weatherApi = new WeatherApi(process.env.OPEN_WEATHER_TOKEN);
 
@@ -9,9 +10,11 @@ export async function createResponse(witResponse) {
         return defaultResponse;
     }
     switch (witResponse.entities.intent[0].value) {
-        case "weather_at_location":
+        case Intent.WEATHER_AT_LOCATION:
             return await weatherApi.getWeatherInfo(witResponse.entities.location[0].value);
             break;
+        case Intent.GREETINGS:
+            return "Hello there. How are you doing today?";
         default:
             return defaultResponse;
     }

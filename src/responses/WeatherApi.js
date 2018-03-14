@@ -14,6 +14,7 @@ export default class WeatherApi {
                 const condition = data.weather[0].description;
                 const temperature = data.main.temp;
                 return `The weather in ${data.name} is ${temperature}°C and ${condition}`;
-            }).catch(error => error.message);
+            })
+            .catch(error => error.message);
     }
 }

@@ -11,7 +11,7 @@ export async function createResponse(witResponse) {
         return defaultResponse;
     }
     switch (witResponse.entities.intent[0].value) {
-        case Intent.WEATHER_AT_LOCATION:
+        case Intent.CURRENT_WEATHER_AT_LOCATION:
             return await weatherApi.getWeatherInfo(witResponse.entities.location[0].value);
             break;
         case Intent.GREETINGS:

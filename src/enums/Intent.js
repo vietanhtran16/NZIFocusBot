@@ -1,4 +1,4 @@
 export const Intent = {
-    WEATHER_AT_LOCATION: "weather_at_location",
+    CURRENT_WEATHER_AT_LOCATION: "current_weather_at_location",
     GREETINGS: "greetings"
 };

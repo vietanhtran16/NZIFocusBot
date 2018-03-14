@@ -21,6 +21,7 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 });
 
 controller.hears([".*"], "message_received", (bot, message) => {
+    console.log(message);
     wit.message(message.text)
         .then(data => createResponse(data))
         .then((response) => {

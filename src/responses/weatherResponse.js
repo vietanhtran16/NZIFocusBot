@@ -12,6 +12,9 @@ export default class weatherResponse {
                 const temperature = data.main.temp;
                 return `The weather in ${data.name} is ${temperature}°C and ${condition}`;
             })
-            .catch(error => error.message);
+            .catch((error) => {
+                console.log(error.message);
+                return `Did you mistyped ${location}?`;
+            });
     }
 }

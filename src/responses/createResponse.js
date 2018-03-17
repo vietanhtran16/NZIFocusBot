@@ -1,8 +1,8 @@
-import WeatherApi from "./WeatherApi";
-import GreetUser from "./GreetUser";
+import greetUserResponse from "./greetUserResponse";
 import {Intent} from "../enums/Intent";
+import weatherResponse from "./weatherResponse";
 
-const weatherApi = new WeatherApi(process.env.OPEN_WEATHER_TOKEN);
+const WeatherResponse = new weatherResponse();
 
 export async function createResponse(witResponse) {
     const defaultResponse = "I am not that smart yet. Have you tried Google it?";
@@ -12,10 +12,10 @@ export async function createResponse(witResponse) {
     }
     switch (witResponse.entities.intent[0].value) {
         case Intent.CURRENT_WEATHER_AT_LOCATION:
-            return await weatherApi.getWeatherInfo(witResponse.entities.location[0].value);
+            return await WeatherResponse.currentWeatherAtLocation(witResponse.entities.location[0].value);
             break;
         case Intent.GREETINGS:
-            return GreetUser.sayHello();
+            return greetUserResponse.sayHello();
         default:
             return defaultResponse;
     }

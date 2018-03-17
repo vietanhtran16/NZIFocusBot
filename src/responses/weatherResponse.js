@@ -1,3 +1,5 @@
+import WeatherApi from "../services/WeatherApi";
+
 export default class weatherResponse {
     constructor() {
         this.weatherApi = new WeatherApi(process.env.OPEN_WEATHER_TOKEN);

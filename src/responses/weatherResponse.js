@@ -5,7 +5,7 @@ export default class weatherResponse {
         this.weatherApi = new WeatherApi(process.env.OPEN_WEATHER_TOKEN);
     }
 
-    async currentWeatherAtLocation(location) {
+    async formatCurrentWeatherResponse(location) {
         return await this.weatherApi.getCurrentWeatherInfo(location)
             .then((data) => {
                 const condition = data.weather[0].description;
@@ -13,11 +13,11 @@ export default class weatherResponse {
                 const currentTemp = data.main.temp;
                 const minTemp = data.main.temp_min;
                 const maxTemp = data.main.temp_max;
-                return `The weather in ${data.name} is ${currentTemp}${tempScale} (${minTemp}${tempScale} - ${maxTemp}${tempScale}) and ${condition}`;
+                return `The weather in ${data.name} is ${currentTemp}${tempScale} (${minTemp}${tempScale} -> ${maxTemp}${tempScale}) and ${condition}`;
             })
             .catch((error) => {
                 console.log(error.message);
-                return `Did you mistyped ${location} or may be I don\'t have weather info of that city?. Sorry`;
+                return `Did you mistyped ${location} or may be I don\'t have weather info of that city?🙁`;
             });
     }
 }

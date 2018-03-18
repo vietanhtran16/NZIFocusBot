@@ -12,7 +12,7 @@ export async function createResponse(witResponse) {
     }
     switch (witResponse.entities.intent[0].value) {
         case Intent.CURRENT_WEATHER_AT_LOCATION:
-            return await WeatherResponse.currentWeatherAtLocation(witResponse.entities.location[0].value);
+            return await WeatherResponse.formatCurrentWeatherResponse(witResponse.entities.location[0].value);
             break;
         case Intent.GREETINGS:
             return greetUserResponse.sayHello();

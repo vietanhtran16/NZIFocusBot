@@ -21,7 +21,11 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 });
 
 controller.hears([".*"], "message_received", (bot, message) => {
-    console.log(message.nlp);
+    console.log(message.nlp.entities);
+    if(message.nlp.entities.location){
+        console.log(message.nlp.entities.location);
+    }
+    console.log(message.nlp.entities.intent);
     wit.message(message.text)
         .then(data => createResponse(data))
         .then((response) => {

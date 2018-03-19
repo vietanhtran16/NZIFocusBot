@@ -1,13 +1,11 @@
 import Botkit from "botkit";
-import { Wit } from "node-wit";
-import { createResponse } from "./responses/createResponse";
+import {createResponse} from "./responses/createResponse";
 
 const controller = Botkit.facebookbot({
     access_token: process.env.FB_PAGE_ACCESS_TOKEN,
     verify_token: process.env.VERIFY_TOKEN,
 });
 
-const wit = new Wit({ accessToken: process.env.WIT_TOKEN });
 const bot = controller.spawn({});
 
 controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
@@ -22,12 +20,11 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 
 controller.hears([".*"], "message_received", (bot, message) => {
     console.log(message.nlp.entities);
-    if(message.nlp.entities.location){
+    if (message.nlp.entities.location) {
         console.log(message.nlp.entities.location);
     }
     console.log(message.nlp.entities.intent);
-    wit.message(message.text)
-        .then(data => createResponse(data))
+    createResponse(message)
         .then((response) => {
             bot.replyWithTyping(message, response);
         })

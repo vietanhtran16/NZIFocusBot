@@ -1,6 +1,6 @@
 export default {
-    formatGrettingResponse() {
-        const greetings = ["Hello there. How are you doing today?", "What's up buddy?", "Yeah nah. Hello mate"];
+    formatGreetingResponse(user) {
+        const greetings = [`Hello ${user.name}. How are you doing today?`, `What's up ${user.name}?`, `Yeah nah. Hello ${user.name}`];
         return greetings[this.getRandomGreetingMsg(greetings)];
     },
 

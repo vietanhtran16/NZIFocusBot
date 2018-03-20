@@ -14,7 +14,7 @@ export async function createResponse(message) {
             return await WeatherResponse.formatCurrentWeatherResponse(message.nlp.entities.location[0].value);
             break;
         case Intent.GREETINGS:
-            return greetUserResponse.formatGrettingResponse();
+            return greetUserResponse.formatGreetingResponse(message.currentUser);
         default:
             return defaultResponse;
     }

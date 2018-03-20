@@ -22,8 +22,7 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 controller.hears([".*"], "message_received", async (bot, message) => {
     console.log(message);
     console.log(message.nlp.entities);
-    const messageWithUserInfo = {...message, userInfo: await getUser(message.user)};
-    console.log(messageWithUserInfo.userInfo);
+    const messageWithUserInfo = {...message, currentUser: await getUser(message.user)};
     createResponse(messageWithUserInfo)
         .then((response) => {
             bot.replyWithTyping(message, response);

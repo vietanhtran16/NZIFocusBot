@@ -1,5 +1,6 @@
 import Botkit from "botkit";
-import {createResponse} from "./responses/createResponse";
+import { createResponse } from "./responses/createResponse";
+import {getUser} from "./services/FbApi";
 
 const controller = Botkit.facebookbot({
     access_token: process.env.FB_PAGE_ACCESS_TOKEN,
@@ -18,11 +19,12 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
     });
 });
 
-controller.hears([".*"], "message_received", (bot, message) => {
+controller.hears([".*"], "message_received", async (bot, message) => {
     console.log(message);
-    console.log(message.nlp);
-    console.log(message.nlp.entities.intent);
-    createResponse(message)
+    console.log(message.nlp.entities);
+    const messageWithUserInfo = {...message, userInfo: await getUser(message.user)};
+    console.log(messageWithUserInfo.userInfo);
+    createResponse(messageWithUserInfo)
         .then((response) => {
             bot.replyWithTyping(message, response);
         })

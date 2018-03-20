@@ -11,10 +11,10 @@ export default class WeatherApi {
             params: {
                 q: location,
                 units: "metric",
-                APPID: this.apiToken
-            }
+                APPID: this.apiToken,
+            },
         }).then(response => response.data).catch((error) => {
-            throw new Error(`Couldn\'t find weather info for ${location}`)
+            throw new Error(`Couldn\'t find weather info for ${location}`);
         });
     }
 }

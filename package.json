@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "postinstall": "webpack",
+    "postinstall": "yarn build-dist",
+    "build-dist": "webpack -p --bail",
     "eslint": "eslint ./src --fix"
   },
   "dependencies": {
@@ -17,8 +18,8 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.4.0",
     "express": "^4.16.2",
-    "node-wit": "^5.0.0",
     "request": "^2.83.0"
   },
   "devDependencies": {

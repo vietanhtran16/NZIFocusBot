@@ -20,8 +20,8 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 });
 
 controller.hears([".*"], "message_received", async (bot, message) => {
-    console.log(message);
-    console.log(message.nlp.entities);
+    console.log("Message", message);
+    console.log("Entities", message.nlp.entities);
     const messageWithUserInfo = {...message, currentUser: await getUser(message.user)};
     createResponse(messageWithUserInfo)
         .then((response) => {

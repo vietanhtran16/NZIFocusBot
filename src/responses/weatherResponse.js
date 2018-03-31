@@ -19,11 +19,11 @@ export default class weatherResponse {
             });
     }
 
-    async formatWeatherForecastRepose(location) {
+    async formatWeatherForecastRepose(location, userTimeZone) {
         const weatherForecast = await this.weatherApi.getWeatherForecast(location)
             .then((data) => {
                 return data.list.slice(0, 5).map((info) => {
-                    const dateTime = moment.unix(info.dt).format("dddd, MMMM Do YYYY, h:mm:ss a");
+                    const dateTime = moment.unix(info.dt).utc().add(userTimeZone, "h").format("dddd, MMMM Do YYYY, h:mm:ss a");
                     const condition = info.weather[0].description;
                     return `${dateTime}, ${info.main.temp}${this.tempScale} and ${condition}`;
                 });

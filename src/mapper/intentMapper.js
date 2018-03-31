@@ -15,7 +15,7 @@ export async function mapIntentWithResponse(message) {
 
 async function mapOtherEntities(message, defaultResponse) {
     if(message.nlp.entities[Intent.WEATHER_FORECAST_AT_LOCATION]){
-        return await WeatherResponse.formatWeatherForecastRepose(message.nlp.entities.location[0].value);
+        return await WeatherResponse.formatWeatherForecastRepose(message.nlp.entities.location[0].value, message.currentUser.timezone);
     }
     return defaultResponse;
 }

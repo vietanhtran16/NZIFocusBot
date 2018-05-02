@@ -1,5 +1,5 @@
 {
-  "name": "fbChatBot",
+  "name": "nzifocusbot",
   "version": "1.0.0",
   "main": ".src/index.js",
   "author": "Viet Anh Tran",
@@ -22,12 +22,12 @@
     "express": "^4.16.2",
     "fb": "^2.0.0",
     "moment": "^2.22.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.9"
+    "babel-preset-env": "^1.6.1"
   }
 }

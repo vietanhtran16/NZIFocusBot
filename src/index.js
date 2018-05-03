@@ -1,5 +1,5 @@
 import Botkit from "botkit";
-import { mapIntentWithResponse } from './mapper/intentMapper';
+import { createResponse } from './responses/responseCreator';
 import { getUser } from "./services/FbApi";
 
 const controller = Botkit.facebookbot({
@@ -27,6 +27,6 @@ controller.hears([".*"], "message_received", async (bot, message) => {
     console.log("Message", message.nlp ? message.nlp.entities : "It is not here" );
     const messageWithUserInfo = {...message, currentUser: await getUser(message.user)};
     
-    const response = mapIntentWithResponse(messageWithUserInfo);
+    const response = createResponse(messageWithUserInfo);
     bot.replyWithTyping(message, response);
 });

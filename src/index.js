@@ -21,8 +21,10 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
 
 controller.api.messenger_profile.greeting("Chào bạn mình có thể giúp gì cho bạn?");
 
+controller.api.nlp.enable(process.env.WIT_TOKEN);
+
 controller.hears([".*"], "message_received", async (bot, message) => {
-    console.log("Message", message);
+    console.log("Message", message.nlp ? message.nlp.entities : "It is not here" );
     const messageWithUserInfo = {...message, currentUser: await getUser(message.user)};
     
     const response = mapIntentWithResponse(messageWithUserInfo);

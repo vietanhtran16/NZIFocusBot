@@ -19,6 +19,8 @@ controller.setupWebserver(process.env.PORT || 5000, (err, webserver) => {
     });
 });
 
+controller.api.messenger_profile.greeting("Chào bạn mình có thể giúp gì cho bạn?");
+
 controller.hears([".*"], "message_received", async (bot, message) => {
     console.log("Message", message);
     const messageWithUserInfo = {...message, currentUser: await getUser(message.user)};
